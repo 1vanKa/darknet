@@ -731,7 +731,7 @@ void validate_detector(char *datacfg, char *cfgfile, char *weightfile, char *out
     int t;
 
     float thresh = .001;
-    float nms = .6;
+    float nms = .45;
 
     int nthreads = 4;
     if (m < 4) nthreads = m;
@@ -866,7 +866,7 @@ void validate_detector_recall(char *datacfg, char *cfgfile, char *weightfile)
 
     float thresh = .001;
     float iou_thresh = .5;
-    float nms = .4;
+    float nms = .45;
 
     int total = 0;
     int correct = 0;
