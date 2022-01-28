@@ -32,6 +32,12 @@
 #endif
 #endif
 
+/// Disable any kind of C-printing to speedup library on release stage
+#ifdef NDEBUG
+#define printf(...)
+#define fprintf(...)
+#endif
+
 #define SECRET_NUM -1234
 
 typedef enum { UNUSED_DEF_VAL } UNUSED_ENUM_TYPE;

@@ -56,6 +56,12 @@ struct bbox_t_container {
 #include <opencv2/imgproc/imgproc_c.h>   // C
 #endif
 
+/// Disable any kind of C-printing to speedup library on release stage
+#ifdef NDEBUG
+#define printf(...)
+#define fprintf(...)
+#endif
+
 extern "C" LIB_API int init(const char *configurationFilename, const char *weightsFilename, int gpu, int batch_size);
 extern "C" LIB_API int detect_image(const char *filename, bbox_t_container &container);
 extern "C" LIB_API int detect_mat(const uint8_t* data, const size_t data_length, bbox_t_container &container);
