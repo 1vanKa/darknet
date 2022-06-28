@@ -190,7 +190,6 @@ if(USE_INTEGRATED_LIBS)
 endif()
 set(Stb_DIR ${CMAKE_CURRENT_LIST_DIR}/3rdparty/stb CACHE PATH "Path where Stb image library can be located")
 
-set(CMAKE_DEBUG_POSTFIX d)
 set(CMAKE_THREAD_PREFER_PTHREAD ON)
 find_package(Threads REQUIRED)
 if(MSVC AND USE_INTEGRATED_LIBS)
