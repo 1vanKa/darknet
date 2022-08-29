@@ -206,7 +206,7 @@ public:
         for (auto & i : cur_bbox_vec) {
             char *buf = (char *)calloc(2048, sizeof(char));
 
-            sprintf(buf, "  {\"class_id\":%d, \"name\":\"%s\", \"absolute_coordinates\":{\"center_x\":%d, \"center_y\":%d, \"width\":%d, \"height\":%d}, \"confidence\":%f",
+            sprintf(buf, "  {\"class_id\":%d, \"name\":\"%s\", \"absolute_coordinates\":{\"center_x\":%f, \"center_y\":%f, \"width\":%f, \"height\":%f}, \"confidence\":%f",
                 i.obj_id, obj_names[i.obj_id].c_str(), i.x, i.y, i.w, i.h, i.prob);
 
             //sprintf(buf, "  {\"class_id\":%d, \"name\":\"%s\", \"relative_coordinates\":{\"center_x\":%f, \"center_y\":%f, \"width\":%f, \"height\":%f}, \"confidence\":%f",
@@ -903,7 +903,7 @@ public:
 
         float min_dist = std::numeric_limits<float>::max();
 
-        for (size_t i = 0; i < max_objects; ++i)
+        for (int i = 0; i < max_objects; ++i)
         {
             if (track_id_state_id_time[i].track_id > -1 && result_vec_pred[i].obj_id == find_box.obj_id && busy_vec[i] == false)
             {
@@ -993,7 +993,7 @@ public:
         clear_old_states();
         std::vector<bbox_t> result_vec;
 
-        for (size_t i = 0; i < max_objects; ++i)
+        for (int i = 0; i < max_objects; ++i)
         {
             tst_t tst = track_id_state_id_time[i];
             if (tst.track_id > -1) {
@@ -1028,7 +1028,7 @@ public:
         calc_dt();
         clear_old_states();
 
-        for (size_t i = 0; i < max_objects; ++i)
+        for (int i = 0; i < max_objects; ++i)
             track_id_state_id_time[i].detection_count--;
 
         std::vector<tst_t> tst_vec = find_state_ids(result_vec);
