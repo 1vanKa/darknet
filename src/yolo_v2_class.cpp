@@ -130,7 +130,7 @@ struct detector_gpu_t {
 LIB_API Detector::Detector(std::string cfg_filename, std::string weight_filename, int gpu_id, int batch_size)
     : cur_gpu_id(gpu_id)
 {
-    wait_stream = 0;
+    wait_stream = false;
 #ifdef GPU
     int old_gpu_index;
     check_cuda( cudaGetDevice(&old_gpu_index) );

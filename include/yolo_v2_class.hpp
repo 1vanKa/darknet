@@ -56,12 +56,6 @@ struct bbox_t_container {
 #include <opencv2/imgproc/imgproc_c.h>   // C
 #endif
 
-/// Disable any kind of C-printing to speedup library on release stage
-#ifdef NDEBUG
-#define printf(...)
-#define fprintf(...)
-#endif
-
 extern "C" LIB_API int init(const char *configurationFilename, const char *weightsFilename, int gpu, int batch_size);
 extern "C" LIB_API int detect_image(const char *filename, bbox_t_container &container);
 extern "C" LIB_API int detect_mat(const uint8_t* data, const size_t data_length, bbox_t_container &container);
@@ -206,7 +200,7 @@ public:
         for (auto & i : cur_bbox_vec) {
             char *buf = (char *)calloc(2048, sizeof(char));
 
-            sprintf(buf, "  {\"class_id\":%d, \"name\":\"%s\", \"absolute_coordinates\":{\"center_x\":%f, \"center_y\":%f, \"width\":%f, \"height\":%f}, \"confidence\":%f",
+            sprintf(buf, R"(  {"class_id":%d, "name":"%s", "absolute_coordinates":{"center_x":%f, "center_y":%f, "width":%f, "height":%f}, "confidence":%f)",
                 i.obj_id, obj_names[i.obj_id].c_str(), i.x, i.y, i.w, i.h, i.prob);
 
             //sprintf(buf, "  {\"class_id\":%d, \"name\":\"%s\", \"relative_coordinates\":{\"center_x\":%f, \"center_y\":%f, \"width\":%f, \"height\":%f}, \"confidence\":%f",
